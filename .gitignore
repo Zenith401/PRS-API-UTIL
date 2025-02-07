@@ -1,2 +1,5 @@
 # Ignore file with our credentials
 config/**
+web_API/email.php
+secrets.txt
+web_API/sender.php
