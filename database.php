@@ -3,7 +3,7 @@
 $DATABASE_HOST = '127.0.0.1'; //Changed from "localhost", using "localhost" caused PDOException SQLSTATE[HY000] [2002]
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'password';
-$DATABASE_NAME = 'Pothole_Management';
+$DATABASE_NAME = 'pothole_reporting_system';
 
 try {
     $pdo = new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
