@@ -71,7 +71,7 @@ try {
         'clientId' => getenv('AZURE_CLIENT_ID'),
         'clientSecret' => getenv('AZURE_CLIENT_SECRET'),
         'refreshToken' => getenv('AZURE_REFRESH_TOKEN'),
-        'userName' => getenv('AZURE_EMAIL'),
+        'userName' => 'Yair@pavementpreservation.onmicrosoft.com',
     ]));
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
