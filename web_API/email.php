@@ -13,8 +13,12 @@ header("Content-Type: application/json");
 
 require '../vendor/autoload.php';
 require "../database.php";
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../config/');
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable('/var/www/html/PRS-API-UTIL/config'); 
 $dotenv->load();
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
