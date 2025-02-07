@@ -24,15 +24,15 @@
             formData.append('email', email);
 
             try {
-                const response = await fetch('http://34.44.181.13/flutterUtil/email.php', { // Replace with actual PHP file path
+                const response = await fetch('http://34.44.181.13/PRS-API-UTIL/web_API/email.php', { // Replace with actual PHP file path
                     method: 'POST',
                     body: formData
                 });
 
                 const result = await response.json();
-                document.getElementById('response').textContent = result.success || result.error;
+                document.getElementById('success').textContent = result.success || result.error;
             } catch (error) {
-                document.getElementById('response').textContent = "Error submitting email.";
+                document.getElementById('error').textContent = "Error submitting email.";
             }
         });
     </script>
