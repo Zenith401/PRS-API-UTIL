@@ -6,11 +6,18 @@
     <title>Email Submission</title>
 </head>
 <body>
-    <h2>Enter Your Email</h2>
+    <h2>Send an Email</h2>
     <form id="emailForm">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
-        <button type="submit">Submit</button>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="body">Body:</label>
+        <textarea id="body" name="body" rows="4" required></textarea>
+
+        <button type="submit">Send Email</button>
     </form>
 
     <p id="response"></p>
@@ -20,19 +27,28 @@
             event.preventDefault();
 
             const email = document.getElementById('email').value;
-            const formData = new FormData();
-            formData.append('email', email);
+            const subject = document.getElementById('subject').value;
+            const body = document.getElementById('body').value;
+
+            const requestData = {
+                email: email,
+                subject: subject,
+                body: body
+            };
 
             try {
-                const response = await fetch('http://34.44.181.13/PRS-API-UTIL/web_API/email.php', { // Replace with actual PHP file path
+                const response = await fetch('http://34.44.181.13/PRS-API-UTIL/web_API/email.php', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
                 });
 
                 const result = await response.json();
-                document.getElementById('success').textContent = result.success || result.error;
+                document.getElementById('response').textContent = result.message;
             } catch (error) {
-                document.getElementById('error').textContent = "Error submitting email.";
+                document.getElementById('response').textContent = "Error submitting email.";
             }
         });
     </script>

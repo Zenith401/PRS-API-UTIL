@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class EmailForm extends StatefulWidget {
   @override
@@ -8,15 +9,26 @@ class EmailForm extends StatefulWidget {
 
 class _EmailFormState extends State<EmailForm> {
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _subjectController = TextEditingController();
+  final TextEditingController _bodyController = TextEditingController();
   bool _isLoading = false;
   String? _message;
 
   Future<void> _sendEmail() async {
     final String email = _emailController.text.trim();
+    final String subject = _subjectController.text.trim();
+    final String body = _bodyController.text.trim();
 
     if (email.isEmpty || !email.contains("@")) {
       setState(() {
         _message = "Please enter a valid email address.";
+      });
+      return;
+    }
+
+    if (subject.isEmpty || body.isEmpty) {
+      setState(() {
+        _message = "Subject and Body cannot be empty.";
       });
       return;
     }
@@ -28,8 +40,15 @@ class _EmailFormState extends State<EmailForm> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://${CONFIG.server}/PRS/flutter_util/email.php'),
-        body: {'email': email},
+        Uri.parse('http://34.44.181.13/PRS-API-UTIL/web_API/email.php'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'email': email,
+          'subject': subject,
+          'body': body,
+        }),
       );
 
       setState(() {
@@ -61,7 +80,24 @@ class _EmailFormState extends State<EmailForm> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: "Enter your email",
+                labelText: "Enter recipient's email",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: _subjectController,
+              decoration: InputDecoration(
+                labelText: "Enter Subject",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: _bodyController,
+              maxLines: 5,
+              decoration: InputDecoration(
+                labelText: "Enter Email Body",
                 border: OutlineInputBorder(),
               ),
             ),
