@@ -4,6 +4,11 @@
     Its a JSON response so key value pair whatever you need to reply back to the application
 -->
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header("Content-Type: application/json");
+
 require '../vendor/autoload.php';
 require "../database.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
