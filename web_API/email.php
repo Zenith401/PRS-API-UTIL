@@ -4,7 +4,7 @@
     Its a JSON response so key value pair whatever you need to reply back to the application
 -->
 <?php
-require '../../vendor/autoload.php';
+require '../vendor/autoload.php';
 require "../database.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
