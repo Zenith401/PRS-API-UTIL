@@ -4,6 +4,8 @@
     Its a JSON response so key value pair whatever you need to reply back to the application
 -->
 <?php
+var_dump(file_exists('/var/www/html/PRS-API-UTIL/web_API/.env'));
+var_dump(is_readable('/var/www/html/PRS-API-UTIL/web_API/.env'));
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
