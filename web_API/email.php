@@ -70,7 +70,7 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->setFrom(getenv('AZURE_EMAIL'), 'CP2 Support Team');
+    $mail->setFrom('Yair@pavementpreservation.onmicrosoft.com', 'CP2 Support Team');
     $mail->addAddress($userEmail);
     $mail->isHTML(true);
     $mail->Subject = $subject;
