@@ -50,7 +50,7 @@ $provider = new Azure([
     'clientId' => getenv('AZURE_CLIENT_ID'),
     'clientSecret' => getenv('AZURE_CLIENT_SECRET'),
     'tenantId' => getenv('AZURE_TENANT_ID'),
-    'refreshToken' => getenv('AZURE_REFRESH_TOKEN'),
+    'scopes' => ['https://outlook.office.com/SMTP.Send', 'offline_access'],
 ]);
 
 
