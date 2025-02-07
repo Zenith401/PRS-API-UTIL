@@ -11,7 +11,7 @@ header("Content-Type: application/json");
 
 require '../vendor/autoload.php';
 require "../database.php";
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../config/');
 $dotenv->load();
 
 use PHPMailer\PHPMailer\PHPMailer;
